@@ -1,0 +1,520 @@
+<!doctype html>
+<html lang="en" class="h-full">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Web Developer Portfolio</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="/_sdk/element_sdk.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&amp;family=IBM+Plex+Sans:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet">
+  <style>
+    body {
+      box-sizing: border-box;
+    }
+    
+    :root {
+      --bg-dark: #0d1117;
+      --bg-surface: #161b22;
+      --text-primary: #e6edf3;
+      --node-green: #5fa04e;
+      --node-green-dark: #3e6b35;
+    }
+    
+    * {
+      scrollbar-width: thin;
+      scrollbar-color: var(--node-green) var(--bg-dark);
+    }
+    
+    .font-mono {
+      font-family: 'IBM Plex Mono', monospace;
+    }
+    
+    .font-sans {
+      font-family: 'IBM Plex Sans', sans-serif;
+    }
+    
+    .honeycomb-bg {
+      background-color: var(--bg-dark);
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='28' height='49' viewBox='0 0 28 49'%3E%3Cg fill-rule='evenodd'%3E%3Cg fill='%235fa04e' fill-opacity='0.08'%3E%3Cpath d='M13.99 9.25l13 7.5v15l-13 7.5L1 31.75v-15l12.99-7.5zM3 17.9v12.7l10.99 6.34 11-6.35V17.9l-11-6.34L3 17.9zM0 15l12.98-7.5V0h-2v6.35L0 12.69v2.3zm0 18.5L12.98 41v8h-2v-6.85L0 35.81v-2.3zM15 0v7.5L27.99 15H28v-2.31h-.01L17 6.35V0h-2zm0 49v-8l12.99-7.5H28v2.31h-.01L17 42.15V49h-2z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    }
+    
+    .glow-green {
+      box-shadow: 0 0 40px rgba(95, 160, 78, 0.3);
+    }
+    
+    .text-gradient {
+      background: linear-gradient(135deg, #5fa04e 0%, #8bc484 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    
+    .card-hover {
+      transition: all 0.3s ease;
+    }
+    
+    .card-hover:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 10px 40px rgba(95, 160, 78, 0.2);
+    }
+    
+    .skill-tag {
+      background: linear-gradient(135deg, rgba(95, 160, 78, 0.2) 0%, rgba(95, 160, 78, 0.1) 100%);
+      border: 1px solid rgba(95, 160, 78, 0.3);
+    }
+    
+    .nav-link {
+      position: relative;
+    }
+    
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: #5fa04e;
+      transition: width 0.3s ease;
+    }
+    
+    .nav-link:hover::after {
+      width: 100%;
+    }
+    
+    .terminal-cursor {
+      animation: blink 1s step-end infinite;
+    }
+    
+    @keyframes blink {
+      50% { opacity: 0; }
+    }
+    
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    .animate-fade-in {
+      animation: fadeInUp 0.6s ease forwards;
+    }
+    
+    .delay-1 { animation-delay: 0.1s; opacity: 0; }
+    .delay-2 { animation-delay: 0.2s; opacity: 0; }
+    .delay-3 { animation-delay: 0.3s; opacity: 0; }
+    .delay-4 { animation-delay: 0.4s; opacity: 0; }
+  </style>
+  <style>@view-transition { navigation: auto; }</style>
+  <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
+ </head>
+ <body class="h-full">
+  <div class="honeycomb-bg min-h-full h-full overflow-auto font-sans"><!-- Navigation -->
+   <nav class="fixed top-0 left-0 right-0 z-50 bg-[#0d1117]/90 backdrop-blur-md border-b border-[#5fa04e]/20">
+    <div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
+     <div class="flex items-center gap-2">
+      <div class="w-8 h-8 rounded-lg bg-[#5fa04e] flex items-center justify-center"><span class="text-[#0d1117] font-bold font-mono text-sm">&lt;/&gt;</span>
+      </div><span id="nav-name" class="font-mono text-[#e6edf3] font-medium">dev.portfolio</span>
+     </div>
+     <div class="hidden md:flex items-center gap-8"><a href="#about" class="nav-link text-[#e6edf3]/70 hover:text-[#e6edf3] transition-colors text-sm">About</a> <a href="#skills" class="nav-link text-[#e6edf3]/70 hover:text-[#e6edf3] transition-colors text-sm">Skills</a> <a href="#projects" class="nav-link text-[#e6edf3]/70 hover:text-[#e6edf3] transition-colors text-sm">Projects</a> <a href="#contact" class="nav-link text-[#e6edf3]/70 hover:text-[#e6edf3] transition-colors text-sm">Contact</a>
+     </div><a href="#contact" class="px-4 py-2 bg-[#5fa04e] hover:bg-[#4a8a3d] text-[#0d1117] rounded-lg font-medium text-sm transition-colors"> Hire Me </a>
+    </div>
+   </nav><!-- Hero Section -->
+   <section class="min-h-screen flex items-center justify-center pt-20 px-6">
+    <div class="max-w-4xl mx-auto text-center">
+     <div class="animate-fade-in delay-1 mb-8">
+      <div class="flex justify-center">
+       <div class="relative">
+        <img src="images/profile.jpg" alt="Profile picture" class="w-40 h-40 rounded-full object-cover border-4 border-[#5fa04e] shadow-2xl">
+        <div class="absolute -bottom-2 -right-2 w-10 h-10 bg-[#5fa04e] rounded-full flex items-center justify-center">
+         <span class="text-[#0d1117] font-bold text-lg">&lt;/&gt;</span>
+        </div>
+       </div>
+      </div>
+     </div>
+     <div class="animate-fade-in delay-1">
+      <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#5fa04e]/10 border border-[#5fa04e]/30 mb-8"><span class="w-2 h-2 rounded-full bg-[#5fa04e] animate-pulse"></span> <span class="text-[#5fa04e] text-sm font-mono">Available for work</span>
+      </div>
+     </div>
+     <h1 class="animate-fade-in delay-2 text-5xl md:text-7xl font-bold text-[#e6edf3] mb-4">Hi, I'm <span id="hero-name" class="text-gradient">Randan Kevin</span></h1>
+     <p id="hero-title" class="animate-fade-in delay-3 text-xl md:text-2xl text-[#e6edf3]/70 font-mono mb-6">Full Stack Web Developer</p>
+     <p id="hero-tagline" class="animate-fade-in delay-4 text-lg text-[#e6edf3]/50 max-w-2xl mx-auto mb-10">Building the web, one line at a time. 2 years of crafting modern, performant, and user-friendly web applications.</p>
+     <div class="animate-fade-in delay-4 flex flex-col sm:flex-row items-center justify-center gap-4"><a href="#projects" class="px-8 py-3 bg-[#5fa04e] hover:bg-[#4a8a3d] text-[#0d1117] rounded-lg font-semibold transition-all hover:scale-105"> View My Work </a> <a href="#contact" class="px-8 py-3 border border-[#5fa04e]/50 hover:border-[#5fa04e] text-[#e6edf3] rounded-lg font-semibold transition-all hover:bg-[#5fa04e]/10"> Get In Touch </a>
+     </div><!-- Terminal Animation -->
+     <div class="mt-16 max-w-lg mx-auto">
+      <div class="bg-[#161b22] rounded-xl border border-[#5fa04e]/20 overflow-hidden glow-green">
+       <div class="flex items-center gap-2 px-4 py-3 bg-[#0d1117] border-b border-[#5fa04e]/20"><span class="w-3 h-3 rounded-full bg-[#ff5f57]"></span> <span class="w-3 h-3 rounded-full bg-[#febc2e]"></span> <span class="w-3 h-3 rounded-full bg-[#28c840]"></span> <span class="ml-2 text-[#e6edf3]/50 text-xs font-mono">terminal</span>
+       </div>
+       <div class="p-4 font-mono text-sm text-left">
+        <p class="text-[#5fa04e]">$ <span class="text-[#e6edf3]">whoami</span></p>
+        <p class="text-[#e6edf3]/70 mt-1">web_developer with 2_years_experience</p>
+        <p class="text-[#5fa04e] mt-3">$ <span class="text-[#e6edf3]">cat skills.txt</span></p>
+        <p class="text-[#e6edf3]/70 mt-1">JavaScript, React, Node.js, and more...</p>
+        <p class="text-[#5fa04e] mt-3">$ <span class="text-[#e6edf3] terminal-cursor">_</span></p>
+       </div>
+      </div>
+     </div>
+    </div>
+   </section><!-- About Section -->
+   <section id="about" class="py-24 px-6">
+    <div class="max-w-6xl mx-auto">
+     <div class="grid md:grid-cols-2 gap-12 items-center">
+      <div><span class="text-[#5fa04e] font-mono text-sm">// About Me</span>
+       <h2 class="text-4xl font-bold text-[#e6edf3] mt-2 mb-6">Passionate about <span class="text-gradient">clean code</span></h2>
+       <p id="about-text" class="text-[#e6edf3]/70 leading-relaxed mb-6">I'm a dedicated web developer with 2 years of hands-on experience building modern web applications. I love turning complex problems into simple, beautiful, and intuitive solutions. My focus is on writing clean, maintainable code that scales.</p>
+       <p class="text-[#e6edf3]/70 leading-relaxed mb-8">When I'm not coding, you'll find me exploring new technologies, contributing to open source, or sharing knowledge with the developer community.</p>
+       <div class="flex items-center gap-6">
+        <div class="text-center">
+         <p class="text-3xl font-bold text-[#5fa04e]">2+</p>
+         <p class="text-[#e6edf3]/50 text-sm">Years Exp.</p>
+        </div>
+        <div class="w-px h-12 bg-[#5fa04e]/30"></div>
+        <div class="text-center">
+         <p class="text-3xl font-bold text-[#5fa04e]">20+</p>
+         <p class="text-[#e6edf3]/50 text-sm">Projects</p>
+        </div>
+        <div class="w-px h-12 bg-[#5fa04e]/30"></div>
+        <div class="text-center">
+         <p class="text-3xl font-bold text-[#5fa04e]">15+</p>
+         <p class="text-[#e6edf3]/50 text-sm">Happy Clients</p>
+        </div>
+       </div>
+      </div>
+      <div class="relative">
+       <div class="bg-[#161b22] rounded-2xl border border-[#5fa04e]/20 p-6 glow-green">
+        <div class="flex items-center gap-3 mb-4">
+         <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-[#5fa04e] to-[#3e6b35] flex items-center justify-center text-2xl">
+          👨‍💻
+         </div>
+         <div>
+         <p id="about-name" class="text-[#e6edf3] font-semibold">Randan Kevin</p>
+         <p class="text-[#5fa04e] text-sm font-mono">@randankevin</p>
+         </div>
+        </div>
+        <div class="space-y-3">
+         <div class="flex items-center gap-3 text-[#e6edf3]/70">
+          <svg class="w-5 h-5 text-[#5fa04e]" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" /> <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+          </svg><span>Remote / Worldwide</span>
+         </div>
+         <div class="flex items-center gap-3 text-[#e6edf3]/70">
+          <svg class="w-5 h-5 text-[#5fa04e]" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+          </svg><span>Full Stack Developer</span>
+         </div>
+         <div class="flex items-center gap-3 text-[#e6edf3]/70">
+          <svg class="w-5 h-5 text-[#5fa04e]" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg><span>2 Years Experience</span>
+         </div>
+        </div>
+       </div>
+      </div>
+     </div>
+    </div>
+   </section><!-- Skills Section -->
+   <section id="skills" class="py-24 px-6 bg-[#0d1117]/50">
+    <div class="max-w-6xl mx-auto">
+     <div class="text-center mb-16"><span class="text-[#5fa04e] font-mono text-sm">// My Toolkit</span>
+      <h2 class="text-4xl font-bold text-[#e6edf3] mt-2">Technologies I <span class="text-gradient">work with</span></h2>
+     </div>
+     <div class="grid md:grid-cols-3 gap-8"><!-- Frontend -->
+      <div class="bg-[#161b22] rounded-xl border border-[#5fa04e]/20 p-6 card-hover">
+       <div class="w-12 h-12 rounded-lg bg-[#5fa04e]/20 flex items-center justify-center mb-4">
+        <svg class="w-6 h-6 text-[#5fa04e]" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+        </svg>
+       </div>
+       <h3 class="text-xl font-semibold text-[#e6edf3] mb-4">Frontend</h3>
+       <div class="flex flex-wrap gap-2"><span class="skill-tag px-3 py-1 rounded-full text-[#5fa04e] text-sm">React</span> <span class="skill-tag px-3 py-1 rounded-full text-[#5fa04e] text-sm">Next.js</span> <span class="skill-tag px-3 py-1 rounded-full text-[#5fa04e] text-sm">TypeScript</span> <span class="skill-tag px-3 py-1 rounded-full text-[#5fa04e] text-sm">Tailwind</span> <span class="skill-tag px-3 py-1 rounded-full text-[#5fa04e] text-sm">HTML/CSS</span>
+       </div>
+      </div><!-- Backend -->
+      <div class="bg-[#161b22] rounded-xl border border-[#5fa04e]/20 p-6 card-hover">
+       <div class="w-12 h-12 rounded-lg bg-[#5fa04e]/20 flex items-center justify-center mb-4">
+        <svg class="w-6 h-6 text-[#5fa04e]" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14M5 12a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v4a2 2 0 01-2 2M5 12a2 2 0 00-2 2v4a2 2 0 002 2h14a2 2 0 002-2v-4a2 2 0 00-2-2m-2-4h.01M17 16h.01" />
+        </svg>
+       </div>
+       <h3 class="text-xl font-semibold text-[#e6edf3] mb-4">Backend</h3>
+       <div class="flex flex-wrap gap-2"><span class="skill-tag px-3 py-1 rounded-full text-[#5fa04e] text-sm">Node.js</span> <span class="skill-tag px-3 py-1 rounded-full text-[#5fa04e] text-sm">Express</span> <span class="skill-tag px-3 py-1 rounded-full text-[#5fa04e] text-sm">PostgreSQL</span> <span class="skill-tag px-3 py-1 rounded-full text-[#5fa04e] text-sm">MongoDB</span> <span class="skill-tag px-3 py-1 rounded-full text-[#5fa04e] text-sm">REST APIs</span>
+       </div>
+      </div><!-- Tools -->
+      <div class="bg-[#161b22] rounded-xl border border-[#5fa04e]/20 p-6 card-hover">
+       <div class="w-12 h-12 rounded-lg bg-[#5fa04e]/20 flex items-center justify-center mb-4">
+        <svg class="w-6 h-6 text-[#5fa04e]" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" /> <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+        </svg>
+       </div>
+       <h3 class="text-xl font-semibold text-[#e6edf3] mb-4">Tools &amp; Others</h3>
+       <div class="flex flex-wrap gap-2"><span class="skill-tag px-3 py-1 rounded-full text-[#5fa04e] text-sm">Git</span> <span class="skill-tag px-3 py-1 rounded-full text-[#5fa04e] text-sm">Docker</span> <span class="skill-tag px-3 py-1 rounded-full text-[#5fa04e] text-sm">AWS</span> <span class="skill-tag px-3 py-1 rounded-full text-[#5fa04e] text-sm">Figma</span> <span class="skill-tag px-3 py-1 rounded-full text-[#5fa04e] text-sm">Linux</span>
+       </div>
+      </div>
+     </div>
+    </div>
+   </section><!-- Projects Section -->
+   <section id="projects" class="py-24 px-6">
+    <div class="max-w-6xl mx-auto">
+     <div class="text-center mb-16"><span class="text-[#5fa04e] font-mono text-sm">// Recent Work</span>
+      <h2 class="text-4xl font-bold text-[#e6edf3] mt-2">Featured <span class="text-gradient">Projects</span></h2>
+     </div>
+     <div class="grid md:grid-cols-2 gap-8"><!-- Project 1 - Truth or Dare -->
+      <div class="bg-[#161b22] rounded-xl border border-[#5fa04e]/20 overflow-hidden card-hover group">
+       <div class="h-48 bg-gradient-to-br from-[#5fa04e]/20 to-[#3e6b35]/20 flex items-center justify-center">
+        <div class="text-6xl">
+         🎮
+        </div>
+       </div>
+       <div class="p-6">
+        <div class="flex items-center gap-2 mb-3"><span class="px-2 py-1 bg-[#5fa04e]/20 text-[#5fa04e] text-xs rounded font-mono">HTML</span> <span class="px-2 py-1 bg-[#5fa04e]/20 text-[#5fa04e] text-xs rounded font-mono">JavaScript</span>
+        </div>
+        <h3 class="text-xl font-semibold text-[#e6edf3] mb-2">Truth or Dare Game</h3>
+        <p class="text-[#e6edf3]/60 text-sm mb-4">An interactive web-based game where players can enjoy classic Truth or Dare with friends. Features random question generation and responsive design.</p>
+        <div class="flex items-center gap-4"><a href="https://truth-or-dare-wxv8.onrender.com" target="_blank" class="text-[#5fa04e] text-sm font-mono group-hover:underline cursor-pointer">View Project →</a>
+        </div>
+       </div>
+      </div><!-- Project 2 - Wallpaper Hub -->
+      <div class="bg-[#161b22] rounded-xl border border-[#5fa04e]/20 overflow-hidden card-hover group">
+       <div class="h-48 bg-gradient-to-br from-[#5fa04e]/20 to-[#3e6b35]/20 flex items-center justify-center">
+        <div class="text-6xl">
+         🖼️
+        </div>
+       </div>
+       <div class="p-6">
+        <div class="flex items-center gap-2 mb-3"><span class="px-2 py-1 bg-[#5fa04e]/20 text-[#5fa04e] text-xs rounded font-mono">HTML</span> <span class="px-2 py-1 bg-[#5fa04e]/20 text-[#5fa04e] text-xs rounded font-mono">CSS</span>
+        </div>
+        <h3 class="text-xl font-semibold text-[#e6edf3] mb-2">HD Wallpaper Hub</h3>
+        <p class="text-[#e6edf3]/60 text-sm mb-4">A curated collection of high-quality wallpapers for desktop and mobile devices. Features category filtering, search functionality, and easy downloads.</p>
+        <div class="flex items-center gap-4"><a href="https://hd-wallpaper-hub.onrender.com" target="_blank" class="text-[#5fa04e] text-sm font-mono group-hover:underline cursor-pointer">View Project →</a>
+        </div>
+       </div>
+      </div><!-- Project 3 - Sperm Donation Website -->
+      <div class="bg-[#161b22] rounded-xl border border-[#5fa04e]/20 overflow-hidden card-hover group">
+       <div class="h-48 bg-gradient-to-br from-[#5fa04e]/20 to-[#3e6b35]/20 flex items-center justify-center">
+        <div class="text-6xl">
+         ❤️
+        </div>
+       </div>
+       <div class="p-6">
+        <div class="flex items-center gap-2 mb-3"><span class="px-2 py-1 bg-[#5fa04e]/20 text-[#5fa04e] text-xs rounded font-mono">HTML</span> <span class="px-2 py-1 bg-[#5fa04e]/20 text-[#5fa04e] text-xs rounded font-mono">CSS</span>
+        </div>
+        <h3 class="text-xl font-semibold text-[#e6edf3] mb-2">Sperm Donation Website</h3>
+        <p class="text-[#e6edf3]/60 text-sm mb-4">A simple HTML site with a clean design that has information on how and where one can donate sperm safely.</p>
+        <div class="flex items-center gap-4"><a href="https://lifegiver.onrender.com" target="_blank" class="text-[#5fa04e] text-sm font-mono group-hover:underline cursor-pointer">View Project →</a>
+        </div>
+       </div>
+      </div><!-- Project 4 - Task Management API -->
+      <div class="bg-[#161b22] rounded-xl border border-[#5fa04e]/20 overflow-hidden card-hover group">
+       <div class="h-48 bg-gradient-to-br from-[#5fa04e]/20 to-[#3e6b35]/20 flex items-center justify-center">
+        <div class="text-6xl">
+         📋
+        </div>
+       </div>
+       <div class="p-6">
+        <div class="flex items-center gap-2 mb-3"><span class="px-2 py-1 bg-[#5fa04e]/20 text-[#5fa04e] text-xs rounded font-mono">Node.js</span> <span class="px-2 py-1 bg-[#5fa04e]/20 text-[#5fa04e] text-xs rounded font-mono">Express</span>
+        </div>
+        <h3 class="text-xl font-semibold text-[#e6edf3] mb-2">Task Management API</h3>
+        <p class="text-[#e6edf3]/60 text-sm mb-4">A RESTful API built with Node.js and Express for task management. Features JWT authentication, MongoDB integration, and CRUD operations.</p>
+        <div class="flex items-center gap-4"><span class="text-[#5fa04e] text-sm font-mono group-hover:underline cursor-pointer">View Project →</span>
+        </div>
+       </div>
+      </div><!-- Project 5 - E-commerce Platform -->
+      <div class="bg-[#161b22] rounded-xl border border-[#5fa04e]/20 overflow-hidden card-hover group">
+       <div class="h-48 bg-gradient-to-br from-[#5fa04e]/20 to-[#3e6b35]/20 flex items-center justify-center">
+        <div class="text-6xl">
+         🛍️
+        </div>
+       </div>
+       <div class="p-6">
+        <div class="flex items-center gap-2 mb-3"><span class="px-2 py-1 bg-[#5fa04e]/20 text-[#5fa04e] text-xs rounded font-mono">React</span> <span class="px-2 py-1 bg-[#5fa04e]/20 text-[#5fa04e] text-xs rounded font-mono">Stripe</span>
+        </div>
+        <h3 class="text-xl font-semibold text-[#e6edf3] mb-2">E-commerce Platform</h3>
+        <p class="text-[#e6edf3]/60 text-sm mb-4">Full-featured e-commerce platform with product management, shopping cart, user authentication, and payment integration.</p>
+        <div class="flex items-center gap-4"><span class="text-[#5fa04e] text-sm font-mono group-hover:underline cursor-pointer">View Project →</span>
+        </div>
+       </div>
+      </div><!-- Project 6 - Chat Application -->
+      <div class="bg-[#161b22] rounded-xl border border-[#5fa04e]/20 overflow-hidden card-hover group">
+       <div class="h-48 bg-gradient-to-br from-[#5fa04e]/20 to-[#3e6b35]/20 flex items-center justify-center">
+        <div class="text-6xl">
+         💬
+        </div>
+       </div>
+       <div class="p-6">
+        <div class="flex items-center gap-2 mb-3"><span class="px-2 py-1 bg-[#5fa04e]/20 text-[#5fa04e] text-xs rounded font-mono">Socket.io</span> <span class="px-2 py-1 bg-[#5fa04e]/20 text-[#5fa04e] text-xs rounded font-mono">Express</span>
+        </div>
+        <h3 class="text-xl font-semibold text-[#e6edf3] mb-2">Chat Application</h3>
+        <p class="text-[#e6edf3]/60 text-sm mb-4">Real-time chat application with Socket.io, featuring multiple rooms, private messaging, and file sharing capabilities.</p>
+        <div class="flex items-center gap-4"><span class="text-[#5fa04e] text-sm font-mono group-hover:underline cursor-pointer">View Project →</span>
+        </div>
+       </div>
+      </div>
+     </div>
+    </div>
+   </section><!-- Contact Section -->
+   <section id="contact" class="py-24 px-6 bg-[#0d1117]/50">
+    <div class="max-w-4xl mx-auto text-center"><span class="text-[#5fa04e] font-mono text-sm">// Get In Touch</span>
+     <h2 class="text-4xl font-bold text-[#e6edf3] mt-2 mb-6">Let's <span class="text-gradient">work together</span></h2>
+     <p class="text-[#e6edf3]/60 mb-12 max-w-2xl mx-auto">I'm currently available for freelance work and full-time positions. If you have a project in mind or just want to chat, feel free to reach out!</p>
+     <div class="bg-[#161b22] rounded-2xl border border-[#5fa04e]/20 p-8 glow-green">
+      <div class="grid md:grid-cols-4 gap-8"><a id="email-link" href="mailto:randankevin@zetech.ac.ke" class="flex flex-col items-center p-4 rounded-xl hover:bg-[#5fa04e]/10 transition-colors group">
+        <div class="w-14 h-14 rounded-full bg-[#5fa04e]/20 flex items-center justify-center mb-3 group-hover:bg-[#5fa04e]/30 transition-colors">
+         <svg class="w-6 h-6 text-[#5fa04e]" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+         </svg>
+        </div><p class="text-[#e6edf3] font-medium mb-1">Email</p><p id="email-text" class="text-[#5fa04e] text-sm font-mono">randankevin@zetech.ac.ke</p></a> <a id="whatsapp-link" href="https://wa.me/254708063827" target="_blank" rel="noopener noreferrer" class="flex flex-col items-center p-4 rounded-xl hover:bg-[#5fa04e]/10 transition-colors group">
+        <div class="w-14 h-14 rounded-full bg-[#5fa04e]/20 flex items-center justify-center mb-3 group-hover:bg-[#5fa04e]/30 transition-colors">
+         <svg class="w-6 h-6 text-[#5fa04e]" fill="currentColor" viewbox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.67-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.076 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421-7.403h-.004a9.87 9.87 0 00-5.031 1.378c-1.897 1.195-3.076 2.9-3.076 4.7 0 1.139.325 2.24.94 3.201L1.07 23.5l4.15-1.294a9.868 9.868 0 004.6 1.171h.004c5.447 0 9.865-4.418 9.865-9.865 0-2.631-.997-5.109-2.807-6.973-1.809-1.864-4.211-2.89-6.822-2.89m8.081 16.226l-.306-.49c-.203-.314-.6-.94-1.3-1.783-.569-.687-1.432-1.41-2.446-1.752-.573-.188-1.05-.236-1.399-.04-.531.288-1.331.92-1.892 1.654-.373.46-.744.919-1.153 1.061-.281.096-.58.062-.888-.085-.296-.14-.693-.375-1.202-1.072-.607-.804-1.282-1.945-1.61-2.88-.162-.46-.26-.745-.228-1.141.029-.37.15-.773.462-1.245.315-.477.915-1.02 1.282-1.06.166-.02.382.032.612.131.32.133.704.474.946 1.537.139.628.196 1.38.119 2.2-.077.819-.273 1.63-.57 2.295.517.32 1.097.572 1.985.572 1.235 0 2.218-.265 2.945-.799.36-.266.66-.6.887-.975.225-.368.368-.76.422-1.164.029-.224.024-.447-.013-.668l-.437.208z" />
+         </svg>
+        </div><p class="text-[#e6edf3] font-medium mb-1">WhatsApp</p><p id="whatsapp-text" class="text-[#5fa04e] text-sm font-mono">+254 708 063 827</p></a> <a id="github-link" href="https://github.com/randankevin" target="_blank" rel="noopener noreferrer" class="flex flex-col items-center p-4 rounded-xl hover:bg-[#5fa04e]/10 transition-colors group">
+        <div class="w-14 h-14 rounded-full bg-[#5fa04e]/20 flex items-center justify-center mb-3 group-hover:bg-[#5fa04e]/30 transition-colors">
+         <svg class="w-6 h-6 text-[#5fa04e]" fill="currentColor" viewbox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
+         </svg>
+        </div><p class="text-[#e6edf3] font-medium mb-1">GitHub</p><p id="github-text" class="text-[#5fa04e] text-sm font-mono">@randankevin</p></a> <a id="linkedin-link" href="https://linkedin.com/in/randankevin" target="_blank" rel="noopener noreferrer" class="flex flex-col items-center p-4 rounded-xl hover:bg-[#5fa04e]/10 transition-colors group">
+        <div class="w-14 h-14 rounded-full bg-[#5fa04e]/20 flex items-center justify-center mb-3 group-hover:bg-[#5fa04e]/30 transition-colors">
+         <svg class="w-6 h-6 text-[#5fa04e]" fill="currentColor" viewbox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
+         </svg>
+        </div><p class="text-[#e6edf3] font-medium mb-1">LinkedIn</p><p id="linkedin-text" class="text-[#5fa04e] text-sm font-mono">@randankevin</p></a>
+      </div>
+     </div>
+    </div>
+   </section><!-- Footer -->
+   <footer class="py-8 px-6 border-t border-[#5fa04e]/20">
+    <div class="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
+     <div class="flex items-center gap-2">
+      <div class="w-6 h-6 rounded bg-[#5fa04e] flex items-center justify-center"><span class="text-[#0d1117] font-bold font-mono text-xs">&lt;/&gt;</span>
+      </div><span id="footer-name" class="text-[#e6edf3]/70 text-sm">© 2024 John Doe. All rights reserved.</span>
+     </div>
+     <p class="text-[#e6edf3]/50 text-sm font-mono">Built with 💚 and lots of coffee</p>
+    </div>
+   </footer>
+  </div>
+  <script>
+    const defaultConfig = {
+      developer_name: 'Randan Kevin',
+      developer_title: 'Full Stack Web Developer',
+      hero_tagline: 'Building the web, one line at a time. 2 years of crafting modern, performant, and user-friendly web applications.',
+      about_text: "I'm a dedicated web developer with 2 years of hands-on experience building modern web applications. I love turning complex problems into simple, beautiful, and intuitive solutions. My focus is on writing clean, maintainable code that scales.",
+      email_address: 'randankevin@zetech.ac.ke',
+      github_url: 'randankevin',
+      linkedin_url: 'randankevin',
+      primary_color: '#5fa04e',
+      background_color: '#0d1117',
+      surface_color: '#161b22',
+      text_color: '#e6edf3',
+      accent_color: '#3e6b35'
+    };
+
+    async function onConfigChange(config) {
+      const name = config.developer_name || defaultConfig.developer_name;
+      const title = config.developer_title || defaultConfig.developer_title;
+      const tagline = config.hero_tagline || defaultConfig.hero_tagline;
+      const aboutText = config.about_text || defaultConfig.about_text;
+      const email = config.email_address || defaultConfig.email_address;
+      const github = config.github_url || defaultConfig.github_url;
+      const linkedin = config.linkedin_url || defaultConfig.linkedin_url;
+      const primaryColor = config.primary_color || defaultConfig.primary_color;
+      const bgColor = config.background_color || defaultConfig.background_color;
+      const surfaceColor = config.surface_color || defaultConfig.surface_color;
+      const textColor = config.text_color || defaultConfig.text_color;
+
+      // Update hero section
+      const heroName = document.getElementById('hero-name');
+      if (heroName) heroName.textContent = name;
+      
+      const heroTitle = document.getElementById('hero-title');
+      if (heroTitle) heroTitle.textContent = title;
+      
+      const heroTagline = document.getElementById('hero-tagline');
+      if (heroTagline) heroTagline.textContent = tagline;
+
+      // Update about section
+      const aboutTextEl = document.getElementById('about-text');
+      if (aboutTextEl) aboutTextEl.textContent = aboutText;
+      
+      const aboutName = document.getElementById('about-name');
+      if (aboutName) aboutName.textContent = name;
+
+      // Update contact section
+      const emailLink = document.getElementById('email-link');
+      if (emailLink) emailLink.href = `mailto:${email}`;
+      
+      const emailText = document.getElementById('email-text');
+      if (emailText) emailText.textContent = email;
+      
+      const githubLink = document.getElementById('github-link');
+      if (githubLink) githubLink.href = `https://github.com/${github}`;
+      
+      const githubText = document.getElementById('github-text');
+      if (githubText) githubText.textContent = `@${github}`;
+      
+      const linkedinLink = document.getElementById('linkedin-link');
+      if (linkedinLink) linkedinLink.href = `https://linkedin.com/in/${linkedin}`;
+      
+      const linkedinText = document.getElementById('linkedin-text');
+      if (linkedinText) linkedinText.textContent = `@${linkedin}`;
+
+      // Update footer
+      const footerName = document.getElementById('footer-name');
+      if (footerName) footerName.textContent = `© 2024 ${name}. All rights reserved.`;
+
+      // Update colors via CSS custom properties
+      document.documentElement.style.setProperty('--node-green', primaryColor);
+      document.documentElement.style.setProperty('--bg-dark', bgColor);
+      document.documentElement.style.setProperty('--bg-surface', surfaceColor);
+      document.documentElement.style.setProperty('--text-primary', textColor);
+    }
+
+    function mapToCapabilities(config) {
+      return {
+        recolorables: [
+          {
+            get: () => config.background_color || defaultConfig.background_color,
+            set: (value) => { config.background_color = value; window.elementSdk.setConfig({ background_color: value }); }
+          },
+          {
+            get: () => config.surface_color || defaultConfig.surface_color,
+            set: (value) => { config.surface_color = value; window.elementSdk.setConfig({ surface_color: value }); }
+          },
+          {
+            get: () => config.text_color || defaultConfig.text_color,
+            set: (value) => { config.text_color = value; window.elementSdk.setConfig({ text_color: value }); }
+          },
+          {
+            get: () => config.primary_color || defaultConfig.primary_color,
+            set: (value) => { config.primary_color = value; window.elementSdk.setConfig({ primary_color: value }); }
+          },
+          {
+            get: () => config.accent_color || defaultConfig.accent_color,
+            set: (value) => { config.accent_color = value; window.elementSdk.setConfig({ accent_color: value }); }
+          }
+        ],
+        borderables: [],
+        fontEditable: undefined,
+        fontSizeable: undefined
+      };
+    }
+
+    function mapToEditPanelValues(config) {
+      return new Map([
+        ['developer_name', config.developer_name || defaultConfig.developer_name],
+        ['developer_title', config.developer_title || defaultConfig.developer_title],
+        ['hero_tagline', config.hero_tagline || defaultConfig.hero_tagline],
+        ['about_text', config.about_text || defaultConfig.about_text],
+        ['email_address', config.email_address || defaultConfig.email_address],
+        ['github_url', config.github_url || defaultConfig.github_url],
+        ['linkedin_url', config.linkedin_url || defaultConfig.linkedin_url]
+      ]);
+    }
+
+    // Initialize SDK
+    if (window.elementSdk) {
+      window.elementSdk.init({
+        defaultConfig,
+        onConfigChange,
+        mapToCapabilities,
+        mapToEditPanelValues
+      });
+    }
+  </script>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9bd4dff413779875',t:'MTc2ODMwNzExMS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
